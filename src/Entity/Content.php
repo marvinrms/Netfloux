@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ContentRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -23,7 +24,7 @@ class Content
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $releasedate = null;
+    private ?DateTime $releasedate = null;
 
     #[ORM\Column(length: 255)]
     private ?string $type = null;
@@ -46,6 +47,8 @@ class Content
     {
         $this->historicals = new ArrayCollection();
     }
+
+
 
     public function getId(): ?int
     {
@@ -76,12 +79,12 @@ class Content
         return $this;
     }
 
-    public function getReleasedate(): ?string
+    public function getReleasedate(): ?DateTime
     {
         return $this->releasedate;
     }
 
-    public function setReleasedate(string $releasedate): static
+    public function setReleasedate(DateTime $releasedate): static
     {
         $this->releasedate = $releasedate;
 
