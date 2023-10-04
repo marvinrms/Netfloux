@@ -40,15 +40,18 @@ class Content
     #[ORM\JoinColumn(nullable: false)]
     private ?Director $director = null;
 
-    #[ORM\OneToMany(mappedBy: 'content', targetEntity: Historical::class, orphanRemoval: true)]
-    private Collection $historicals;
+    #[ORM\OneToMany(mappedBy: 'content', targetEntity: ChoiceUser::class)]
+    private Collection $choiceUsers;
 
     public function __construct()
     {
-        $this->historicals = new ArrayCollection();
+        $this->choiceUsers = new ArrayCollection();
     }
 
-
+    public function __toString()
+    {
+        return $this->name;
+    }
 
     public function getId(): ?int
     {
@@ -140,32 +143,33 @@ class Content
     }
 
     /**
-     * @return Collection<int, Historical>
+     * @return Collection<int, ChoiceUser>
      */
-    public function getHistoricals(): Collection
+    public function getChoiceUsers(): Collection
     {
-        return $this->historicals;
+        return $this->choiceUsers;
     }
 
-    public function addHistorical(Historical $historical): static
+    public function addChoiceUser(ChoiceUser $choiceUser): static
     {
-        if (!$this->historicals->contains($historical)) {
-            $this->historicals->add($historical);
-            $historical->setContent($this);
+        if (!$this->choiceUsers->contains($choiceUser)) {
+            $this->choiceUsers->add($choiceUser);
+            $choiceUser->setContent($this);
         }
 
         return $this;
     }
 
-    public function removeHistorical(Historical $historical): static
+    public function removeChoiceUser(ChoiceUser $choiceUser): static
     {
-        if ($this->historicals->removeElement($historical)) {
+        if ($this->choiceUsers->removeElement($choiceUser)) {
             // set the owning side to null (unless already changed)
-            if ($historical->getContent() === $this) {
-                $historical->setContent(null);
+            if ($choiceUser->getContent() === $this) {
+                $choiceUser->setContent(null);
             }
         }
 
         return $this;
     }
+
 }

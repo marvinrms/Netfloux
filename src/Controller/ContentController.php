@@ -17,4 +17,12 @@ class ContentController extends AbstractController
             'content' => $contentRepository->findAll(),
         ]);
     }
+
+    #[Route('/content/{id<\d+>}', name: 'app_content_push')]
+    public function change(ContentRepository $contentRepository): Response
+    {   
+        return $this->render('content/index.html.twig', [
+            'content' => $contentRepository->findAll(),
+        ]);
+    }
 }

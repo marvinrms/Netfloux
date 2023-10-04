@@ -1,23 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ContentController!{% endblock %}
+{% block title %}Hello ContentController!
+{% endblock %}
 
 {% block body %}
-{% for contents in content %}
-<div class="container text-center col-4 mx-auto">
-<h1> MATCHEZ</h1>
-<div class="card">
-    <div class="card-header">
-    <h2>{{contents.name}}</h2>
-    </div>
-    <div class="card-body">
-    <img class="w-100"src="{{asset('uploads/images/'~ contents.image)}}">
-    </div>
-    <div class="card-footer d-flex justify-content-around ">
-    <button class="btn btn-primary rounded-circle" style="font-size:40px;">👍</button>
-    <button class="btn btn-primary rounded-circle" style="font-size:40px">👎</button>
-    </div>
-        </div>
-</div>
-{% endfor %}
+	<div class="container text-center col-4 mx-auto">
+		<h1>
+			MATCHEZ</h1>
+		{% for contents in content %}
+			<div class="card">
+				<div class="card-header">
+					<h2>{{contents.name}}</h2>
+				</div>
+				<div class="card-body">
+					<img class="w-100" src="{{asset('uploads/images/'~ contents.image)}}">
+				</div>
+				<div class="card-footer d-flex justify-content-around ">
+					<a class="btn btn-primary rounded-circle" style="font-size:40px;">👍</a>
+					<a href="" class="btn btn-primary rounded-circle" style="font-size:40px">👎</a>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
 {% endblock %}

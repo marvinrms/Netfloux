@@ -1,15 +1,17 @@
 <?php
 
 namespace App\Controller\Admin;
-
+use App\Entity\User;
 use App\Entity\Content;
 use App\Entity\Categorie;
+use App\Entity\ChoiceUser;
 use App\Entity\Director;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\Choice;
 
 class DashboardController extends AbstractDashboardController
 {
@@ -45,7 +47,9 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linktoRoute('Back to the website', 'fas fa-home', 'app_content');
         yield MenuItem::linkToCrud('Categorie', 'fas fa-list', Categorie::class);
+        yield MenuItem::linkToCrud('User', 'fas fa-list', User::class);
         yield MenuItem::linkToCrud('Director', 'fas fa-list', Director::class);
         yield MenuItem::linkToCrud('Content', 'fas fa-list', Content::class);
+        yield MenuItem::linkToCrud('Choice User', 'fas fa-list', ChoiceUser::class);
     }
 }
